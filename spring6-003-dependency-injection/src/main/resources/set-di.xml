@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="orderDaoBean" class="com.powernode.spring6.dao.OrderDao"/>
+    <!-- 外部Bean的特点：bean定义到外面，在property标签中使用ref属性进行注入。通常这种方式是常用。-->
+    <bean id="orderServiceBean" class="com.powernode.spring6.service.OrderService">
+        <property name="orderDao" ref="orderDaoBean"/>
+    </bean>
+
+    <bean id="orderServiceBean2" class="com.powernode.spring6.service.OrderService">
+        <property name="orderDao">
+            <bean class="com.powernode.spring6.dao.OrderDao"/>
+        </property>
+    </bean>
+
+    <bean id="date" class="java.util.Date"/>
+    <!--注入简单类型-->
+    <bean id="user" class="com.powernode.spring6.bean.User">
+        <property name="age" value="20"/>
+        <property name="name" value="zhangsan"/>
+        <property name="password" value="123456"/>
+        <property name="clazz" value="java.lang.String"/>
+        <!-- date是简单类型，但是一般用red进行注入,1999/03/23可以注入成功，但是1999.03.23会失败  -->
+        <!--  <property name="date" value="1999.03.23"/>-->
+        <property name="date" ref="date"/>
+    </bean>
+
+    <!-- 给数据源进行赋值 -->
+    <bean id="dataSource" class="com.powernode.spring6.beans.MyDataSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+</beans>

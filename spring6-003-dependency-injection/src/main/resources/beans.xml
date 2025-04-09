@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDaoBean" class="com.powernode.spring6.dao.UserDao"/>
+    <bean id="vipDaoBean" class="com.powernode.spring6.dao.VipDao"/>
+    <bean id="customerServiceBean" class="com.powernode.spring6.service.CustomerService">
+        <!--  根据构造参数的下标构造注入   -->
+        <!--  index属性指定下标，第一个为0，第二个为1....   -->
+        <!--  ref属性指定bean的id   -->
+        <!--  指定构造方法的第一个参数，下标为0   -->
+        <constructor-arg index="0" ref="userDaoBean"/>
+        <!--  指定构造方法的第二个参数，下标为1   -->
+        <constructor-arg index="1" ref="vipDaoBean"/>
+    </bean>
+
+    <bean id="customerServiceBean2" class="com.powernode.spring6.service.CustomerService">
+        <!--  根据构造参数的名字注入   -->
+        <!--  顺序有要求，按照构造器的参数顺序进行注入   -->
+        <constructor-arg name="userDao" ref="userDaoBean"/>
+        <constructor-arg name="vipDao" ref="vipDaoBean"/>
+    </bean>
+
+    <bean id="customerServiceBean3" class="com.powernode.spring6.service.CustomerService">
+        <!--  根据构造参数的名字注入   -->
+        <!--  无顺序要求，会根据类型自动匹配   -->
+        <constructor-arg ref="vipDaoBean"/>
+        <constructor-arg ref="userDaoBean"/>
+    </bean>
+
+</beans>
