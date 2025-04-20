@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 数组类型为简单类型    -->
+    <bean id="person" class="com.powernode.spring6.beans.Person">
+        <property name="hobbies">
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
+        <property name="womans">
+            <!--    数组类型为非简单类型时时候ref标签        -->
+            <array>
+                <ref bean="w1"/>
+                <ref bean="w2"/>
+                <ref bean="w3"/>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 数组类型为非简单类型    -->
+    <bean id="w1" class="com.powernode.spring6.beans.Woman">
+        <property name="name" value="小芳"/>
+    </bean>
+    <bean id="w2" class="com.powernode.spring6.beans.Woman">
+        <property name="name" value="小红"/>
+    </bean>
+    <bean id="w3" class="com.powernode.spring6.beans.Woman">
+        <property name="name" value="小娟"/>
+    </bean>
+
+</beans>
