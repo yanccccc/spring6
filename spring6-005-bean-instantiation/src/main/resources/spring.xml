@@ -30,7 +30,7 @@
 
     <!--通过工厂Bean：DateFactoryBean 来返回普通Bean：java.util.Date -->
     <bean id="strDate" class="com.powernode.spring6.bean.DateFactoryBean">
-        <constructor-arg index="0" value="2020-03-30"/>
+        <constructor-arg name="strDate" value="2020-03-30"/>
     </bean>
 
     <bean id="studentBean" class="com.powernode.spring6.bean.Student">
