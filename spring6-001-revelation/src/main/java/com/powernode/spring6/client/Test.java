@@ -1,6 +1,6 @@
-package com.porernode.spring6.client;
+package com.powernode.spring6.client;
 
-import com.porernode.spring6.web.UserAction;
+import com.powernode.spring6.web.UserAction;
 
 public class Test {
     public static void main(String[] args) {
